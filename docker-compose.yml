@@ -1,42 +1,42 @@
-version: ‘3.8’
+version: "3.8"
 
 services:
-server:
-image: opensign/opensignserver:main
-container_name: OpenSignServer-container
+  server:
+    image: opensign/opensignserver:main
+    container_name: OpenSignServer-container
+    volumes:
+      - opensign-files:/usr/src/app/files
+    env_file: .env.prod
+    environment:
+      - NODE_ENV=production
+      - SERVER_URL=https://localhost/api/app
+      - PUBLIC_URL=https://localhost
+    networks:
+      - npm_network
+
+  mongo:
+    image: mongo:latest
+    container_name: mongo-container
+    volumes:
+      - data-volume:/data/db
+    networks:
+      - npm_network
+
+  client:
+    image: opensign/opensign:main
+    container_name: OpenSign-container
+    depends_on:
+      - server
+    env_file: .env.prod
+    environment:
+      - NODE_ENV=production
+    networks:
+      - npm_network
+
+networks:
+  npm_network:
+    external: true
+
 volumes:
-- opensign-files:/usr/src/app/files
-env_file: .env.prod
-environment:
-- NODE_ENV=production
-- SERVER_URL=https://localhost/api/app   # Acceso externo vía NPM en 443
-- PUBLIC_URL=https://localhost           # Front-end externo vía NPM en 443
-networks:
-- npm_network
-
-mongo:
-image: mongo:latest
-container_name: mongo-container
-volumes:
-- data-volume:/data/db
-networks:
-- npm_network
-
-client:
-image: opensign/opensign:main
-container_name: OpenSign-container
-depends_on:
-- server
-env_file: .env.prod
-environment:
-- NODE_ENV=production
-networks:
-- npm_network
-
-networks:
-npm_network:
-external: true  # Red externa de Nginx Proxy Manager
-
-volumes:
-data-volume:
-opensign-files:
+  data-volume: {}
+  opensign-files: {}
