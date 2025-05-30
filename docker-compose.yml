@@ -43,8 +43,9 @@ services:
     image: caddy:latest
     container_name: caddy-container
     ports:
-      - "3002:443"            # Host 3002 → Contenedor 443 (HTTPS)
-      # - "3004:80"           # (Opcional) Host 3004 → Contenedor 80 (HTTP)
+      - "3002:3001"            # Host 3002 → Contenedor 443 (HTTPS)
+      - "443:443"
+      - "443:443/udp"
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
       - caddy_data:/data
