@@ -38,7 +38,7 @@ services:
       - npm_network
 
 networks:
-  npm-network:
+  npm_network:
     external: true  # La red de Nginx Proxy Manager
 
 volumes:
