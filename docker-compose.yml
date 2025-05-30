@@ -1,4 +1,4 @@
-version: "3.8"
+version: '3.8'
 
 services:
   server:
@@ -6,11 +6,13 @@ services:
     container_name: OpenSignServer-container
     volumes:
       - opensign-files:/usr/src/app/files
+    ports:
+      - "8082:8080"    # Host 8082 → Contenedor 8080 (API Server)
     env_file: .env.prod
     environment:
       - NODE_ENV=production
-      - SERVER_URL=https://localhost/api/app
-      - PUBLIC_URL=https://localhost
+      - SERVER_URL=https://localhost:8082/api/app
+      - PUBLIC_URL=https://localhost:3003
     networks:
       - npm_network
 
@@ -19,6 +21,8 @@ services:
     container_name: mongo-container
     volumes:
       - data-volume:/data/db
+    ports:
+      - "27018:27017"  # Host 27018 → Contenedor 27017 (MongoDB)
     networks:
       - npm_network
 
@@ -28,15 +32,15 @@ services:
     depends_on:
       - server
     env_file: .env.prod
-    environment:
-      - NODE_ENV=production
+    ports:
+      - "3003:3000"    # Host 3003 → Contenedor 3000 (Front-end React)
     networks:
       - npm_network
 
 networks:
   npm_network:
-    external: true
+    external: true    # Red de Nginx Proxy Manager
 
 volumes:
-  data-volume: {}
-  opensign-files: {}
+  data-volume:
+  opensign-files:
