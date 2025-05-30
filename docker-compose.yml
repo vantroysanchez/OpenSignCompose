@@ -14,7 +14,7 @@ services:
       - SERVER_URL=https://localhost:8082/api/app  # URL de la API
       - PUBLIC_URL=https://localhost:3003          # URL del Front-end
     networks:
-      - npm-network
+      - npm_network
 
   mongo:
     image: mongo:latest
@@ -24,7 +24,7 @@ services:
     ports:
       - "27018:27017"  # Host 27018 → Contenedor 27017 (MongoDB)
     networks:
-      - npm-network
+      - npm_network
 
   client:
     image: opensign/opensign:main
@@ -35,7 +35,7 @@ services:
     ports:
       - "3003:3000"   # Host 3003 → Contenedor 3000 (Front-end React)
     networks:
-      - npm-network
+      - npm_network
 
 networks:
   npm-network:
