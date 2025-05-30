@@ -39,7 +39,7 @@ services:
 
 networks:
   npm_network:
-    external: true  # La red de Nginx Proxy Manager
+    external: true  # La red de Nginx Proxy Manager modificada
 
 volumes:
   data-volume:
