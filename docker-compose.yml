@@ -13,8 +13,8 @@ services:
     env_file: .env.prod
     environment:
       - NODE_ENV=production
-      - SERVER_URL=${HOST_URL:-https://localhost:3002}/api/app
-      - PUBLIC_URL=${HOST_URL:-https://localhost:3002}
+      - SERVER_URL=${HOST_URL:-https://192.168.0.251:3002}/api/app
+      - PUBLIC_URL=${HOST_URL:-https://192.168.0.251:3002}
     networks:
       - app-network
 
@@ -52,7 +52,7 @@ services:
     networks:
       - app-network
     environment:
-      - HOST_URL=${HOST_URL:-https://localhost:3002}
+      - HOST_URL=${HOST_URL:-https://192.168.0.251:3002}
 
 networks:
   app-network:
