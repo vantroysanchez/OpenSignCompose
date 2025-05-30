@@ -12,7 +12,7 @@ services:
     environment:
       - NODE_ENV=production
       - SERVER_URL=https://localhost:8082/api/app
-      - PUBLIC_URL=https://localhost:3003
+      - PUBLIC_URL=https://localhost:8002
     networks:
       - npm_network
 
