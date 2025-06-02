@@ -15,6 +15,7 @@ services:
       - PUBLIC_URL=${HOST_URL:-https://localhost:3001}
     networks:
       - npm_network
+
   mongo:
     image: mongo:latest
     container_name: mongo-container
@@ -24,6 +25,7 @@ services:
       - "27018:27017"
     networks:
       - npm_network
+
   client:
     image: opensign/opensign:main
     container_name: OpenSign-container
@@ -34,11 +36,12 @@ services:
       - "3000:3000"
     networks:
       - npm_network
+
   caddy:
     image: caddy:latest
     container_name: caddy-container
     ports:
-      - "3001:3001"      
+      - "3001:3001"
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
       - caddy_data:/data
@@ -47,9 +50,10 @@ services:
       - npm_network
     environment:
       - HOST_URL=${HOST_URL:-localhost:3001}
+
 networks:
   npm_network:
-    driver: bridge
+    external: true
 
 volumes:
   data-volume:
