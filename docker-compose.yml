@@ -47,6 +47,9 @@ services:
       - npm_network
     environment:
       - HOST_URL=${HOST_URL:-localhost:3001}
+networks:
+  npm_network:
+    driver: bridge
 
 volumes:
   data-volume:
