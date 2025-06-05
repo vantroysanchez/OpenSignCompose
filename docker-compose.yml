@@ -15,9 +15,10 @@ services:
       - SERVER_URL=${HOST_URL:-https://opensign.rehabilitacion.org.do}/api/app
       - PUBLIC_URL=${HOST_URL:-https://opensign.rehabilitacion.org.do}
       - SMTP_ENABLE=true
+      - SMTP_SECURE=false
       - SMTP_HOST=192.168.0.233
       - SMTP_PORT=10025
-      - SMTP_SECURE=false
+      - SMTP_USER_EMAIL=opensign@rehabilitacion.org.do      
     networks:
       - npm_network
 
@@ -59,9 +60,10 @@ services:
     environment:
       - HOST_URL=${HOST_URL:-https://opensign.rehabilitacion.org.do}
       - SMTP_ENABLE=true
+      - SMTP_SECURE=false
       - SMTP_HOST=192.168.0.233
       - SMTP_PORT=10025
-      - SMTP_SECURE=false
+      - SMTP_USER_EMAIL=opensign@rehabilitacion.org.do
 
 networks:
   npm_network:
