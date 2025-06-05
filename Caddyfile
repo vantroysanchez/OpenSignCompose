@@ -1,23 +1,29 @@
-http://192.168.0.251:3001 {
-    reverse_proxy /api/* server:8080 {
+:3001 {
+    reverse_proxy client:3000 {
         header_up Host {host}
         header_up X-Forwarded-Proto {scheme}
     }
 
-    reverse_proxy client:3000 {
-        header_up Host {host}
-        header_up X-Forwarded-Proto {scheme}
+    handle_path /api/* {
+        reverse_proxy server:8080 {
+            header_up Host {host}
+            header_up X-Forwarded-Proto {scheme}
+        }
+        rewrite * {uri}
     }
 }
 
 https://opensign.rehabilitacion.org.do {
-    reverse_proxy /api/* server:8080 {
+    reverse_proxy client:3000 {
         header_up Host {host}
         header_up X-Forwarded-Proto {scheme}
     }
 
-    reverse_proxy client:3000 {
-        header_up Host {host}
-        header_up X-Forwarded-Proto {scheme}
+    handle_path /api/* {
+        reverse_proxy server:8080 {
+            header_up Host {host}
+            header_up X-Forwarded-Proto {scheme}
+        }
+        rewrite * {uri}
     }
 }
