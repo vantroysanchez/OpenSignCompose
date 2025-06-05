@@ -12,8 +12,8 @@ services:
     env_file: .env.prod
     environment:
       - NODE_ENV=production
-      - SERVER_URL=${HOST_URL:-https://192.168.0.251:3001}/api/app
-      - PUBLIC_URL=${HOST_URL:-https://192.168.0.251:3001}
+      - SERVER_URL=${HOST_URL:-https://opensign.rehabilitacion.org.do}/api/app
+      - PUBLIC_URL=${HOST_URL:-https://opensign.rehabilitacion.org.do}
     networks:
       - npm_network
 
@@ -53,7 +53,7 @@ services:
     networks:
       - npm_network
     environment:
-      - HOST_URL=${HOST_URL:-192.168.0.251:3001}
+      - HOST_URL=${HOST_URL:-https://opensign.rehabilitacion.org.do}
 
 networks:
   npm_network:
