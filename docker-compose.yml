@@ -18,6 +18,8 @@ services:
       - SMTP_HOST=192.168.0.234
       - SMTP_PORT=10025
       - SMTP_SECURE=false
+      - SMTP_USER_EMAIL=
+      - SMTP_PASS=
     networks:
       - npm_network
 
