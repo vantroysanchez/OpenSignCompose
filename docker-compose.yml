@@ -5,6 +5,7 @@ services:
     restart: unless-stopped
     volumes:
       - opensign-files:/usr/src/app/files
+      - /opt/opensign/files:/usr/src/app/public/files
     ports:
       - "8080:8080"
     depends_on:
@@ -75,3 +76,4 @@ volumes:
   caddy_data:
   caddy_config:
   opensign-files:
+
