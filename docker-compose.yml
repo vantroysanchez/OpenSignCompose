@@ -16,10 +16,11 @@ services:
       - SERVER_URL=${HOST_URL:-https://opensign.rehabilitacion.org.do}/api/app
       - PUBLIC_URL=${HOST_URL:-https://opensign.rehabilitacion.org.do}
       - SMTP_ENABLE=true
-      - SMTP_SECURE=false
-      - SMTP_HOST=mail.adr.org.do
-      - SMTP_PORT=10025
-      - SMTP_USER_EMAIL=opensign@rehabilitacion.org.do      
+      - SMTP_HOST=smtp.office365.com
+      - SMTP_PORT=587
+      - SMTP_USER_EMAIL=notificaciones@rehabilitacion.org.do
+      - SMTP_USERNAME=notificaciones@rehabilitacion.org.do
+      - SMTP_PASS=9E268D0B93FC74F682A8C17B63DE5512
     networks:
       - npm_network
 
